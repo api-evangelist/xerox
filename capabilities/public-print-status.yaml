@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Xerox Public Print API — Status
+  description: 'Xerox Public Print API — Status. 1 operations. Lead operation: Get API Status. Self-contained Naftiko capability
+    covering one Xerox business surface.'
+  tags:
+  - Xerox
+  - Status
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    XEROX_API_KEY: XEROX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: public-print-status
+    baseUri: https://publicprintapi.services.xerox.com/api/v1
+    description: Xerox Public Print API — Status business capability. Self-contained, no shared references.
+    resources:
+    - name: Status
+      path: /Status
+      operations:
+      - name: getstatus
+        method: GET
+        description: Get API Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: xrxauth
+      value: '{{env.XEROX_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: public-print-status-rest
+    port: 8080
+    description: REST adapter for Xerox Public Print API — Status. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/status
+      name: status
+      description: REST surface for Status.
+      operations:
+      - method: GET
+        name: getstatus
+        description: Get API Status
+        call: public-print-status.getstatus
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: public-print-status-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Xerox Public Print API — Status. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-api-status
+      description: Get API Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: public-print-status.getstatus
+      outputParameters:
+      - type: object
+        mapping: $.

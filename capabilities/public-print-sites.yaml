@@ -1,0 +1,536 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Xerox Public Print API — Sites
+  description: 'Xerox Public Print API — Sites. 12 operations. Lead operation: Get Site. Self-contained Naftiko capability
+    covering one Xerox business surface.'
+  tags:
+  - Xerox
+  - Sites
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    XEROX_API_KEY: XEROX_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: public-print-sites
+    baseUri: https://publicprintapi.services.xerox.com/api/v1
+    description: Xerox Public Print API — Sites business capability. Self-contained, no shared references.
+    resources:
+    - name: Sites
+      path: /Sites
+      operations:
+      - name: getsite
+        method: GET
+        description: Get Site
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: The unique identifier of the site
+          required: true
+        - name: filterDeleted
+          in: query
+          type: boolean
+          description: Filter out deleted sites
+      - name: createsite
+        method: PUT
+        description: Create Site
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: updatesite
+        method: POST
+        description: Update Site
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletesite
+        method: DELETE
+        description: Delete Site
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: The unique identifier of the site to delete
+          required: true
+    - name: Sites-Favorite
+      path: /Sites/Favorite
+      operations:
+      - name: addfavoritesite
+        method: PUT
+        description: Add Favorite Site
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: The unique identifier of the site
+          required: true
+      - name: removefavoritesite
+        method: DELETE
+        description: Remove Favorite Site
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: string
+          description: The unique identifier of the site
+          required: true
+    - name: Sites-Favorites
+      path: /Sites/Favorites
+      operations:
+      - name: listfavoritesites
+        method: GET
+        description: List Favorite Sites
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: Sites-Search
+      path: /Sites/Search
+      operations:
+      - name: searchsitesbylocation
+        method: GET
+        description: Search Sites By Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: longitude
+          in: query
+          type: number
+          description: Longitude of the center point
+          required: true
+        - name: latitude
+          in: query
+          type: number
+          description: Latitude of the center point
+          required: true
+        - name: range
+          in: query
+          type: number
+          description: Search radius in meters
+          required: true
+    - name: Sites-SearchByName
+      path: /Sites/SearchByName
+      operations:
+      - name: searchsitesbyname
+        method: GET
+        description: Search Sites By Name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          description: Site name to search for
+          required: true
+        - name: $skip
+          in: query
+          type: integer
+        - name: $take
+          in: query
+          type: integer
+    - name: Sites-SearchByRemoteId
+      path: /Sites/SearchByRemoteId
+      operations:
+      - name: searchsitesbyremoteid
+        method: GET
+        description: Search Sites By Remote Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: remoteId
+          in: query
+          type: string
+          description: The remote system identifier
+          required: true
+    - name: Sites-Sync
+      path: /Sites/Sync
+      operations:
+      - name: syncsites
+        method: POST
+        description: Sync Sites
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: Sites-UpdateSites
+      path: /Sites/UpdateSites
+      operations:
+      - name: updatesitesfromprovider
+        method: GET
+        description: Update Sites From Provider
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: providerId
+          in: query
+          type: string
+          description: The unique identifier of the provider
+          required: true
+    authentication:
+      type: apikey
+      key: xrxauth
+      value: '{{env.XEROX_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: public-print-sites-rest
+    port: 8080
+    description: REST adapter for Xerox Public Print API — Sites. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/sites
+      name: sites
+      description: REST surface for Sites.
+      operations:
+      - method: GET
+        name: getsite
+        description: Get Site
+        call: public-print-sites.getsite
+        with:
+          id: rest.id
+          filterDeleted: rest.filterDeleted
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: createsite
+        description: Create Site
+        call: public-print-sites.createsite
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updatesite
+        description: Update Site
+        call: public-print-sites.updatesite
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletesite
+        description: Delete Site
+        call: public-print-sites.deletesite
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/favorite
+      name: sites-favorite
+      description: REST surface for Sites-Favorite.
+      operations:
+      - method: PUT
+        name: addfavoritesite
+        description: Add Favorite Site
+        call: public-print-sites.addfavoritesite
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: removefavoritesite
+        description: Remove Favorite Site
+        call: public-print-sites.removefavoritesite
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/favorites
+      name: sites-favorites
+      description: REST surface for Sites-Favorites.
+      operations:
+      - method: GET
+        name: listfavoritesites
+        description: List Favorite Sites
+        call: public-print-sites.listfavoritesites
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/search
+      name: sites-search
+      description: REST surface for Sites-Search.
+      operations:
+      - method: GET
+        name: searchsitesbylocation
+        description: Search Sites By Location
+        call: public-print-sites.searchsitesbylocation
+        with:
+          longitude: rest.longitude
+          latitude: rest.latitude
+          range: rest.range
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/searchbyname
+      name: sites-searchbyname
+      description: REST surface for Sites-SearchByName.
+      operations:
+      - method: GET
+        name: searchsitesbyname
+        description: Search Sites By Name
+        call: public-print-sites.searchsitesbyname
+        with:
+          name: rest.name
+          $skip: rest.$skip
+          $take: rest.$take
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/searchbyremoteid
+      name: sites-searchbyremoteid
+      description: REST surface for Sites-SearchByRemoteId.
+      operations:
+      - method: GET
+        name: searchsitesbyremoteid
+        description: Search Sites By Remote Id
+        call: public-print-sites.searchsitesbyremoteid
+        with:
+          remoteId: rest.remoteId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/sync
+      name: sites-sync
+      description: REST surface for Sites-Sync.
+      operations:
+      - method: POST
+        name: syncsites
+        description: Sync Sites
+        call: public-print-sites.syncsites
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sites/updatesites
+      name: sites-updatesites
+      description: REST surface for Sites-UpdateSites.
+      operations:
+      - method: GET
+        name: updatesitesfromprovider
+        description: Update Sites From Provider
+        call: public-print-sites.updatesitesfromprovider
+        with:
+          providerId: rest.providerId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: public-print-sites-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Xerox Public Print API — Sites. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-site
+      description: Get Site
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: public-print-sites.getsite
+      with:
+        id: tools.id
+        filterDeleted: tools.filterDeleted
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-site
+      description: Create Site
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: public-print-sites.createsite
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-site
+      description: Update Site
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: public-print-sites.updatesite
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-site
+      description: Delete Site
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: public-print-sites.deletesite
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-favorite-site
+      description: Add Favorite Site
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: public-print-sites.addfavoritesite
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: remove-favorite-site
+      description: Remove Favorite Site
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: public-print-sites.removefavoritesite
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-favorite-sites
+      description: List Favorite Sites
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: public-print-sites.listfavoritesites
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-sites-location
+      description: Search Sites By Location
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: public-print-sites.searchsitesbylocation
+      with:
+        longitude: tools.longitude
+        latitude: tools.latitude
+        range: tools.range
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-sites-name
+      description: Search Sites By Name
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: public-print-sites.searchsitesbyname
+      with:
+        name: tools.name
+        $skip: tools.$skip
+        $take: tools.$take
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-sites-remote-id
+      description: Search Sites By Remote Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: public-print-sites.searchsitesbyremoteid
+      with:
+        remoteId: tools.remoteId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: sync-sites
+      description: Sync Sites
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: public-print-sites.syncsites
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-sites-provider
+      description: Update Sites From Provider
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: public-print-sites.updatesitesfromprovider
+      with:
+        providerId: tools.providerId
+      outputParameters:
+      - type: object
+        mapping: $.
