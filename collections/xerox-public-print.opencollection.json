@@ -1,0 +1,792 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xerox Public Print API",
+    "version": "5.5.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "xrxauth",
+      "value": "{{xrxauth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Print Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Job",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the job"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the details of a specific print job by ID."
+        },
+        {
+          "info": {
+            "name": "Create Print Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Job",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new print job in the Xerox Public Print Service. Returns Resource-Id, Details-Uri, and Status-Uri response headers."
+        },
+        {
+          "info": {
+            "name": "Get Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Job/Status",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the job"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the current status of a print job."
+        },
+        {
+          "info": {
+            "name": "Update Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Job/Status",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates the status of a print job."
+        },
+        {
+          "info": {
+            "name": "Get Job History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Job/History",
+            "params": [
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "$take",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the print history for the current user with pagination support."
+        },
+        {
+          "info": {
+            "name": "Clear Job History",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Job/History",
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Clears the print job history for the current user."
+        },
+        {
+          "info": {
+            "name": "Get Job Options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Job/Options",
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists all supported job options for print job creation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "EULA",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Provider EULA",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/EULA",
+            "params": [
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the provider"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the end-user license agreement for a specific provider."
+        },
+        {
+          "info": {
+            "name": "Create or Update Provider EULA",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/EULA",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates or updates the end-user license agreement for a provider."
+        },
+        {
+          "info": {
+            "name": "Agree To EULA",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/EULA/Agree",
+            "params": [
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the provider"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Records user agreement to a provider's end-user license agreement."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Provider Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Provider Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/ProviderTypes",
+            "params": [
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip"
+              },
+              {
+                "name": "$take",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists all supported provider types with pagination support."
+        },
+        {
+          "info": {
+            "name": "Create Provider Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/ProviderTypes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new provider type in the system."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sites",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Sites",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the site"
+              },
+              {
+                "name": "filterDeleted",
+                "value": "",
+                "type": "query",
+                "description": "Filter out deleted sites"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves details of a specific print site."
+        },
+        {
+          "info": {
+            "name": "Update Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Sites",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates an existing print site."
+        },
+        {
+          "info": {
+            "name": "Create Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Sites",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new print site."
+        },
+        {
+          "info": {
+            "name": "Delete Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Sites",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the site to delete"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a specified print site."
+        },
+        {
+          "info": {
+            "name": "Search Sites By Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Sites/Search",
+            "params": [
+              {
+                "name": "longitude",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the center point"
+              },
+              {
+                "name": "latitude",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the center point"
+              },
+              {
+                "name": "range",
+                "value": "",
+                "type": "query",
+                "description": "Search radius in meters"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Searches for print sites within a specified radius of a location."
+        },
+        {
+          "info": {
+            "name": "Search Sites By Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Sites/SearchByName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Site name to search for"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$take",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Searches for print sites by name with pagination."
+        },
+        {
+          "info": {
+            "name": "Search Sites By Remote Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Sites/SearchByRemoteId",
+            "params": [
+              {
+                "name": "remoteId",
+                "value": "",
+                "type": "query",
+                "description": "The remote system identifier"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Searches for a site by its ID in a remote system."
+        },
+        {
+          "info": {
+            "name": "Add Favorite Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Sites/Favorite",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the site"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Marks a site as a favorite for the current user."
+        },
+        {
+          "info": {
+            "name": "Remove Favorite Site",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Sites/Favorite",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the site"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Removes a site from the current user's favorites."
+        },
+        {
+          "info": {
+            "name": "List Favorite Sites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Sites/Favorites",
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists all sites marked as favorites by the current user."
+        },
+        {
+          "info": {
+            "name": "Sync Sites",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Sites/Sync",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Merges site data with the system."
+        },
+        {
+          "info": {
+            "name": "Update Sites From Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Sites/UpdateSites",
+            "params": [
+              {
+                "name": "providerId",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the provider"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Synchronizes sites from a provider into the system."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Provider",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the provider"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves details of a specific print provider."
+        },
+        {
+          "info": {
+            "name": "Update Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Provider",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates an existing print provider."
+        },
+        {
+          "info": {
+            "name": "Create Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Provider",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new print provider."
+        },
+        {
+          "info": {
+            "name": "Delete Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Provider/Delete",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the provider to delete"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a specific print provider."
+        },
+        {
+          "info": {
+            "name": "Search Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Provider/Search",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Provider name to search for"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$take",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Searches for providers with optional filtering."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get API Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Status"
+          },
+          "docs": "Health check endpoint for monitoring the Xerox Public Print API status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
