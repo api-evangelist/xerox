@@ -7,7 +7,7 @@ description: >-
   the Xerox Public Print Service. The program provides SDKs, APIs, and tools for building custom printing applications,
   workflow integrations, and enterprise print management solutions.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Document Management
   - Enterprise
@@ -27,7 +27,7 @@ apis:
       status monitoring, site discovery, provider management, EULA handling, and print history. Requires authentication
       via xrxauth header, user-email, and appid for all secure calls. Supports location-based site search for finding
       nearby printers.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://publicprintapi.services.xerox.com/
     baseURL: https://publicprintapi.services.xerox.com/api/v1
     tags:
@@ -49,7 +49,7 @@ apis:
       The Xerox MPS-API and Support Assistant API (SA-API) provide a secure common interface allowing third parties to
       access features in the Xerox hosted technology suite for managed print services. Based on standard Web Service
       technologies supporting fleet management, device monitoring, supply replenishment, and service request automation.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.xerox.com/en-us/about/developer-program
     tags:
       - Fleet Management
@@ -66,7 +66,7 @@ apis:
       printers and compatible devices. Apps are deployed through the Xerox App Gallery and can integrate device
       capabilities including scanning, printing, and workflow automation. Includes the Xerox App Developer Kit for
       ConnectKey applications.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.xerox.com/en-us/about/developer-program
     tags:
       - App Development
@@ -84,7 +84,7 @@ apis:
       Software development kit for integrating with the Xerox FreeFlow production printing platform. Includes interfaces
       for Prepress, Press, Variable Information (VIPP), and Photo modules enabling custom workflow automation for
       high-volume production printing environments.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.xerox.com/en-us/about/developer-program
     tags:
       - FreeFlow
