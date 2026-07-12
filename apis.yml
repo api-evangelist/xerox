@@ -95,6 +95,10 @@ apis:
       - type: Documentation
         url: https://www.xerox.com/en-us/about/developer-program
 common:
+  - type: DomainSecurity
+    url: security/xerox-domain-security.yml
+  - type: Authentication
+    url: authentication/xerox-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/xerox
   - type: Website

@@ -1,0 +1,30 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/xerox-public-print-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: xrxauth
+  type: apiKey
+  in: header
+  parameter: xrxauth
+  description: Xerox authentication credentials
+  sources:
+  - openapi/xerox-public-print-openapi.yml
+- name: userEmail
+  type: apiKey
+  in: header
+  parameter: user-email
+  description: User email address for user-context requests
+  sources:
+  - openapi/xerox-public-print-openapi.yml
+- name: appId
+  type: apiKey
+  in: header
+  parameter: appid
+  description: Application identifier
+  sources:
+  - openapi/xerox-public-print-openapi.yml
