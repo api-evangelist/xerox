@@ -1,0 +1,113 @@
+openapi: 3.1.0
+info:
+  title: Xerox Public Print EULA Provider Types API
+  description: REST API for managing print jobs through the Xerox Public Print Service. Provides endpoints for job creation, status monitoring, site discovery, provider management, EULA handling, and print history management. All secure calls require xrxauth, user-email, and appid headers. If user-email is omitted the request is treated as an application request.
+  version: 5.5.0
+  contact:
+    name: Xerox Developer Program
+    url: https://www.xerox.com/en-us/about/developer-program
+    email: xerox.global.developer.program@xerox.com
+  termsOfService: https://www.xerox.com/en-us/about/legal
+servers:
+- url: https://publicprintapi.services.xerox.com/api/v1
+  description: Xerox Public Print API Production Server
+security:
+- xrxauth: []
+tags:
+- name: Provider Types
+  description: Provider type listing and management
+paths:
+  /ProviderTypes:
+    get:
+      operationId: listProviderTypes
+      summary: List Provider Types
+      description: Lists all supported provider types with pagination support.
+      tags:
+      - Provider Types
+      security:
+      - xrxauth: []
+        appId: []
+      parameters:
+      - name: $skip
+        in: query
+        required: false
+        description: Number of records to skip
+        schema:
+          type: integer
+      - name: $take
+        in: query
+        required: false
+        description: Number of records to return
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Provider types retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderTypeListResponse'
+    put:
+      operationId: createProviderType
+      summary: Create Provider Type
+      description: Creates a new provider type in the system.
+      tags:
+      - Provider Types
+      security:
+      - xrxauth: []
+        appId: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProviderType'
+      responses:
+        '201':
+          description: Provider type created successfully
+        '400':
+          description: Bad request
+components:
+  schemas:
+    ProviderTypeListResponse:
+      type: object
+      description: Paginated list of provider types
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProviderType'
+    ProviderType:
+      type: object
+      description: A type of print provider
+      properties:
+        id:
+          type: string
+          description: Unique identifier
+        name:
+          type: string
+          description: Provider type name
+        description:
+          type: string
+          description: Provider type description
+  securitySchemes:
+    xrxauth:
+      type: apiKey
+      in: header
+      name: xrxauth
+      description: Xerox authentication credentials
+    userEmail:
+      type: apiKey
+      in: header
+      name: user-email
+      description: User email address for user-context requests
+    appId:
+      type: apiKey
+      in: header
+      name: appid
+      description: Application identifier
+externalDocs:
+  description: Xerox Public Print API Documentation
+  url: https://publicprintapi.services.xerox.com/

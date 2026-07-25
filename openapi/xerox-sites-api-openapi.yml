@@ -1,0 +1,392 @@
+openapi: 3.1.0
+info:
+  title: Xerox Public Print EULA Sites API
+  description: REST API for managing print jobs through the Xerox Public Print Service. Provides endpoints for job creation, status monitoring, site discovery, provider management, EULA handling, and print history management. All secure calls require xrxauth, user-email, and appid headers. If user-email is omitted the request is treated as an application request.
+  version: 5.5.0
+  contact:
+    name: Xerox Developer Program
+    url: https://www.xerox.com/en-us/about/developer-program
+    email: xerox.global.developer.program@xerox.com
+  termsOfService: https://www.xerox.com/en-us/about/legal
+servers:
+- url: https://publicprintapi.services.xerox.com/api/v1
+  description: Xerox Public Print API Production Server
+security:
+- xrxauth: []
+tags:
+- name: Sites
+  description: Site discovery and management for print locations
+paths:
+  /Sites:
+    get:
+      operationId: getSite
+      summary: Get Site
+      description: Retrieves details of a specific print site.
+      tags:
+      - Sites
+      security:
+      - xrxauth: []
+        appId: []
+      parameters:
+      - name: id
+        in: query
+        required: true
+        description: The unique identifier of the site
+        schema:
+          type: string
+      - name: filterDeleted
+        in: query
+        required: false
+        description: Filter out deleted sites
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Site details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+        '404':
+          description: Site not found
+    put:
+      operationId: createSite
+      summary: Create Site
+      description: Creates a new print site.
+      tags:
+      - Sites
+      security:
+      - xrxauth: []
+        appId: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Site'
+      responses:
+        '201':
+          description: Site created successfully
+        '400':
+          description: Bad request
+    post:
+      operationId: updateSite
+      summary: Update Site
+      description: Updates an existing print site.
+      tags:
+      - Sites
+      security:
+      - xrxauth: []
+        appId: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Site'
+      responses:
+        '200':
+          description: Site updated successfully
+        '400':
+          description: Bad request
+    delete:
+      operationId: deleteSite
+      summary: Delete Site
+      description: Deletes a specified print site.
+      tags:
+      - Sites
+      security:
+      - xrxauth: []
+        appId: []
+      parameters:
+      - name: id
+        in: query
+        required: true
+        description: The unique identifier of the site to delete
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Site deleted successfully
+        '404':
+          description: Site not found
+  /Sites/Search:
+    get:
+      operationId: searchSitesByLocation
+      summary: Search Sites By Location
+      description: Searches for print sites within a specified radius of a location.
+      tags:
+      - Sites
+      security:
+      - xrxauth: []
+        appId: []
+      parameters:
+      - name: longitude
+        in: query
+        required: true
+        description: Longitude of the center point
+        schema:
+          type: number
+          format: double
+      - name: latitude
+        in: query
+        required: true
+        description: Latitude of the center point
+        schema:
+          type: number
+          format: double
+      - name: range
+        in: query
+        required: true
+        description: Search radius in meters
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Sites found within range
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteListResponse'
+  /Sites/SearchByName:
+    get:
+      operationId: searchSitesByName
+      summary: Search Sites By Name
+      description: Searches for print sites by name with pagination.
+      tags:
+      - Sites
+      security:
+      - xrxauth: []
+        appId: []
+      parameters:
+      - name: name
+        in: query
+        required: true
+        description: Site name to search for
+        schema:
+          type: string
+      - name: $skip
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: $take
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Matching sites retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteListResponse'
+  /Sites/SearchByRemoteId:
+    get:
+      operationId: searchSitesByRemoteId
+      summary: Search Sites By Remote Id
+      description: Searches for a site by its ID in a remote system.
+      tags:
+      - Sites
+      security:
+      - xrxauth: []
+        appId: []
+      parameters:
+      - name: remoteId
+        in: query
+        required: true
+        description: The remote system identifier
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Matching site retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+  /Sites/Favorite:
+    put:
+      operationId: addFavoriteSite
+      summary: Add Favorite Site
+      description: Marks a site as a favorite for the current user.
+      tags:
+      - Sites
+      security:
+      - xrxauth: []
+        userEmail: []
+        appId: []
+      parameters:
+      - name: id
+        in: query
+        required: true
+        description: The unique identifier of the site
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Site added to favorites
+    delete:
+      operationId: removeFavoriteSite
+      summary: Remove Favorite Site
+      description: Removes a site from the current user's favorites.
+      tags:
+      - Sites
+      security:
+      - xrxauth: []
+        userEmail: []
+        appId: []
+      parameters:
+      - name: id
+        in: query
+        required: true
+        description: The unique identifier of the site
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Site removed from favorites
+  /Sites/Favorites:
+    get:
+      operationId: listFavoriteSites
+      summary: List Favorite Sites
+      description: Lists all sites marked as favorites by the current user.
+      tags:
+      - Sites
+      security:
+      - xrxauth: []
+        userEmail: []
+        appId: []
+      responses:
+        '200':
+          description: Favorite sites retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteListResponse'
+  /Sites/Sync:
+    post:
+      operationId: syncSites
+      summary: Sync Sites
+      description: Merges site data with the system.
+      tags:
+      - Sites
+      security:
+      - xrxauth: []
+        appId: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyncSitesRequest'
+      responses:
+        '200':
+          description: Sites synced successfully
+  /Sites/UpdateSites:
+    get:
+      operationId: updateSitesFromProvider
+      summary: Update Sites From Provider
+      description: Synchronizes sites from a provider into the system.
+      tags:
+      - Sites
+      security:
+      - xrxauth: []
+        appId: []
+      parameters:
+      - name: providerId
+        in: query
+        required: true
+        description: The unique identifier of the provider
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Sites updated from provider
+components:
+  schemas:
+    GeoLocation:
+      type: object
+      description: Geographic coordinates
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    SiteListResponse:
+      type: object
+      description: List of sites
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Site'
+    SyncSitesRequest:
+      type: object
+      description: Request to sync site data
+      properties:
+        sites:
+          type: array
+          items:
+            $ref: '#/components/schemas/Site'
+    Site:
+      type: object
+      description: A print site (location with printers)
+      properties:
+        id:
+          type: string
+          description: Unique identifier
+        name:
+          type: string
+          description: Site name
+        providerId:
+          type: string
+          description: ID of the provider managing this site
+        address:
+          $ref: '#/components/schemas/Address'
+        location:
+          $ref: '#/components/schemas/GeoLocation'
+        remoteId:
+          type: string
+          description: ID in the remote provider system
+        isDeleted:
+          type: boolean
+          description: Whether the site has been deleted
+    Address:
+      type: object
+      description: Physical address
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+  securitySchemes:
+    xrxauth:
+      type: apiKey
+      in: header
+      name: xrxauth
+      description: Xerox authentication credentials
+    userEmail:
+      type: apiKey
+      in: header
+      name: user-email
+      description: User email address for user-context requests
+    appId:
+      type: apiKey
+      in: header
+      name: appid
+      description: Application identifier
+externalDocs:
+  description: Xerox Public Print API Documentation
+  url: https://publicprintapi.services.xerox.com/

@@ -1,0 +1,344 @@
+openapi: 3.1.0
+info:
+  title: Xerox Public Print EULA Jobs API
+  description: REST API for managing print jobs through the Xerox Public Print Service. Provides endpoints for job creation, status monitoring, site discovery, provider management, EULA handling, and print history management. All secure calls require xrxauth, user-email, and appid headers. If user-email is omitted the request is treated as an application request.
+  version: 5.5.0
+  contact:
+    name: Xerox Developer Program
+    url: https://www.xerox.com/en-us/about/developer-program
+    email: xerox.global.developer.program@xerox.com
+  termsOfService: https://www.xerox.com/en-us/about/legal
+servers:
+- url: https://publicprintapi.services.xerox.com/api/v1
+  description: Xerox Public Print API Production Server
+security:
+- xrxauth: []
+tags:
+- name: Jobs
+  description: Print job creation, management, and history operations
+paths:
+  /Job:
+    put:
+      operationId: createJob
+      summary: Create Print Job
+      description: Creates a new print job in the Xerox Public Print Service. Returns Resource-Id, Details-Uri, and Status-Uri response headers.
+      tags:
+      - Jobs
+      security:
+      - xrxauth: []
+        userEmail: []
+        appId: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateJobRequest'
+      responses:
+        '201':
+          description: Job created successfully
+          headers:
+            Resource-Id:
+              description: The ID of the newly created job
+              schema:
+                type: string
+            Details-Uri:
+              description: URI to retrieve job details
+              schema:
+                type: string
+            Status-Uri:
+              description: URI to retrieve job status
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '400':
+          description: Bad request - missing required headers or invalid input
+    get:
+      operationId: getJob
+      summary: Get Print Job
+      description: Retrieves the details of a specific print job by ID.
+      tags:
+      - Jobs
+      security:
+      - xrxauth: []
+        userEmail: []
+        appId: []
+      parameters:
+      - name: id
+        in: query
+        required: true
+        description: The unique identifier of the job
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '400':
+          description: Bad request
+        '404':
+          description: Job not found
+  /Job/Status:
+    get:
+      operationId: getJobStatus
+      summary: Get Job Status
+      description: Retrieves the current status of a print job.
+      tags:
+      - Jobs
+      security:
+      - xrxauth: []
+        userEmail: []
+        appId: []
+      parameters:
+      - name: jobId
+        in: query
+        required: true
+        description: The unique identifier of the job
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobStatus'
+        '400':
+          description: Bad request
+        '404':
+          description: Job not found
+    post:
+      operationId: updateJobStatus
+      summary: Update Job Status
+      description: Updates the status of a print job.
+      tags:
+      - Jobs
+      security:
+      - xrxauth: []
+        userEmail: []
+        appId: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateJobStatusRequest'
+      responses:
+        '200':
+          description: Job status updated successfully
+        '400':
+          description: Bad request
+  /Job/History:
+    get:
+      operationId: getJobHistory
+      summary: Get Job History
+      description: Retrieves the print history for the current user with pagination support.
+      tags:
+      - Jobs
+      security:
+      - xrxauth: []
+        userEmail: []
+        appId: []
+      parameters:
+      - name: $skip
+        in: query
+        required: false
+        description: Number of records to skip for pagination
+        schema:
+          type: integer
+      - name: $take
+        in: query
+        required: false
+        description: Number of records to return
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Job history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobHistoryResponse'
+        '400':
+          description: Bad request
+    delete:
+      operationId: clearJobHistory
+      summary: Clear Job History
+      description: Clears the print job history for the current user.
+      tags:
+      - Jobs
+      security:
+      - xrxauth: []
+        userEmail: []
+        appId: []
+      responses:
+        '204':
+          description: Job history cleared successfully
+        '400':
+          description: Bad request
+  /Job/Options:
+    get:
+      operationId: getJobOptions
+      summary: Get Job Options
+      description: Lists all supported job options for print job creation.
+      tags:
+      - Jobs
+      security:
+      - xrxauth: []
+        userEmail: []
+        appId: []
+      responses:
+        '200':
+          description: Job options retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobOptionsResponse'
+components:
+  schemas:
+    Job:
+      type: object
+      description: A print job
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the job
+        status:
+          type: string
+          description: Current status of the job
+          enum:
+          - Pending
+          - Processing
+          - Ready
+          - Printed
+          - Failed
+          - Expired
+        providerId:
+          type: string
+          description: ID of the print provider
+        siteId:
+          type: string
+          description: ID of the print site
+        createdAt:
+          type: string
+          format: date-time
+          description: Job creation timestamp
+        expiresAt:
+          type: string
+          format: date-time
+          description: Job expiration timestamp
+        options:
+          type: object
+          description: Print job options
+          additionalProperties: true
+    JobOptionsResponse:
+      type: object
+      description: Available print job options
+      properties:
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobOption'
+    CreateJobRequest:
+      type: object
+      description: Request body for creating a new print job
+      properties:
+        documentUrl:
+          type: string
+          description: URL of the document to print
+        providerId:
+          type: string
+          description: ID of the print provider
+        siteId:
+          type: string
+          description: ID of the print site
+        options:
+          type: object
+          description: Print job options
+          additionalProperties: true
+      required:
+      - documentUrl
+    JobOption:
+      type: object
+      description: A supported print job option
+      properties:
+        name:
+          type: string
+          description: Option name
+        type:
+          type: string
+          description: Option data type
+        values:
+          type: array
+          items:
+            type: string
+          description: Allowed values for this option
+    JobHistoryResponse:
+      type: object
+      description: Paginated list of job history
+      properties:
+        total:
+          type: integer
+          description: Total number of records
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+    JobStatus:
+      type: object
+      description: Status of a print job
+      properties:
+        jobId:
+          type: string
+          description: ID of the job
+        status:
+          type: string
+          description: Current status
+          enum:
+          - Pending
+          - Processing
+          - Ready
+          - Printed
+          - Failed
+          - Expired
+        message:
+          type: string
+          description: Status message
+    UpdateJobStatusRequest:
+      type: object
+      description: Request to update job status
+      properties:
+        jobId:
+          type: string
+          description: ID of the job to update
+        status:
+          type: string
+          description: New status value
+      required:
+      - jobId
+      - status
+  securitySchemes:
+    xrxauth:
+      type: apiKey
+      in: header
+      name: xrxauth
+      description: Xerox authentication credentials
+    userEmail:
+      type: apiKey
+      in: header
+      name: user-email
+      description: User email address for user-context requests
+    appId:
+      type: apiKey
+      in: header
+      name: appid
+      description: Application identifier
+externalDocs:
+  description: Xerox Public Print API Documentation
+  url: https://publicprintapi.services.xerox.com/
