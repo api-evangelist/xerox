@@ -1,0 +1,24 @@
+{
+  "provider": "xerox",
+  "sources": [
+    "xerox-eula-api-openapi.yml",
+    "xerox-jobs-api-openapi.yml",
+    "xerox-provider-types-api-openapi.yml",
+    "xerox-providers-api-openapi.yml",
+    "xerox-sites-api-openapi.yml",
+    "xerox-status-api-openapi.yml"
+  ],
+  "outputs": [
+    "xerox-eula-api-openapi.yml",
+    "xerox-jobs-api-openapi.yml",
+    "xerox-provider-types-api-openapi.yml",
+    "xerox-providers-api-openapi.yml",
+    "xerox-sites-api-openapi.yml",
+    "xerox-status-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
