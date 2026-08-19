@@ -1,0 +1,127 @@
+{
+  "item": [
+    {
+      "id": "e70461ba-8084-439d-a29b-ed3adb823bab",
+      "name": "Status",
+      "description": {
+        "content": "Health and status monitoring",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "070b64ca-36f3-4827-bafa-ec79dbcd6e4f",
+          "name": "Get API Status",
+          "request": {
+            "name": "Get API Status",
+            "description": {
+              "content": "Health check endpoint for monitoring the Xerox Public Print API status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d78f16e0-b185-44ae-8bf2-ff7f9a3e9eb0",
+              "name": "API is healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"timestamp\": \"1982-08-20T03:48:23.654Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://publicprintapi.services.xerox.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "xrxauth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3672770a-98d2-4e32-ae67-cac511a0493e",
+    "name": "Xerox Public Print EULA Status API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing print jobs through the Xerox Public Print Service. Provides endpoints for job creation, status monitoring, site discovery, provider management, EULA handling, and print history management. All secure calls require xrxauth, user-email, and appid headers. If user-email is omitted the request is treated as an application request.\n\nContact Support:\n Name: Xerox Developer Program\n Email: xerox.global.developer.program@xerox.com",
+      "type": "text/plain"
+    }
+  }
+}

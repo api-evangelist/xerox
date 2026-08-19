@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xerox Public Print EULA Providers API",
+    "version": "5.5.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "xrxauth",
+      "value": "{{xrxauth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Provider",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the provider"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves details of a specific print provider."
+        },
+        {
+          "info": {
+            "name": "Update Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Provider",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates an existing print provider."
+        },
+        {
+          "info": {
+            "name": "Create Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Provider",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new print provider."
+        },
+        {
+          "info": {
+            "name": "Delete Provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Provider/Delete",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the provider to delete"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a specific print provider."
+        },
+        {
+          "info": {
+            "name": "Search Providers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Provider/Search",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Provider name to search for"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$take",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Searches for providers with optional filtering."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

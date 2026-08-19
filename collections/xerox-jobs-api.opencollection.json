@@ -1,0 +1,183 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xerox Public Print EULA Jobs API",
+    "version": "5.5.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "xrxauth",
+      "value": "{{xrxauth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Print Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Job",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the job"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the details of a specific print job by ID."
+        },
+        {
+          "info": {
+            "name": "Create Print Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Job",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new print job in the Xerox Public Print Service. Returns Resource-Id, Details-Uri, and Status-Uri response headers."
+        },
+        {
+          "info": {
+            "name": "Get Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Job/Status",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the job"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the current status of a print job."
+        },
+        {
+          "info": {
+            "name": "Update Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Job/Status",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates the status of a print job."
+        },
+        {
+          "info": {
+            "name": "Get Job History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Job/History",
+            "params": [
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination"
+              },
+              {
+                "name": "$take",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the print history for the current user with pagination support."
+        },
+        {
+          "info": {
+            "name": "Clear Job History",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Job/History",
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Clears the print job history for the current user."
+        },
+        {
+          "info": {
+            "name": "Get Job Options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Job/Options",
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists all supported job options for print job creation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

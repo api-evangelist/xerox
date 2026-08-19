@@ -1,0 +1,1522 @@
+{
+  "item": [
+    {
+      "id": "f3aa6405-a53c-4176-8e72-1e6d8b2c22a3",
+      "name": "Sites",
+      "description": {
+        "content": "Site discovery and management for print locations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8498a6b0-92a5-44f2-8fc9-e9b0863630d8",
+          "name": "Get Site",
+          "request": {
+            "name": "Get Site",
+            "description": {
+              "content": "Retrieves details of a specific print site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Sites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the site"
+                },
+                {
+                  "disabled": false,
+                  "key": "filterDeleted",
+                  "value": "<boolean>",
+                  "description": "Filter out deleted sites"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "xrxauth"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9da337f7-545b-4fdb-a7e6-b52dc19c64db",
+              "name": "Site details retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterDeleted",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"providerId\": \"string\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"location\": {\n    \"latitude\": 9990.143644756256,\n    \"longitude\": 4373.477263780502\n  },\n  \"remoteId\": \"string\",\n  \"isDeleted\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "825502b2-fd12-4749-9d2e-2a08b667ef35",
+              "name": "Site not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterDeleted",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f59a092e-a2d0-4ac6-9f37-d7cc58ec95fb",
+          "name": "Create Site",
+          "request": {
+            "name": "Create Site",
+            "description": {
+              "content": "Creates a new print site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Sites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "xrxauth"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"providerId\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"location\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"remoteId\": \"<string>\",\n  \"isDeleted\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3b4aba21-00c1-4f65-ab7a-38ed77c35db4",
+              "name": "Site created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"providerId\": \"<string>\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"location\": {\n    \"latitude\": 914.2954779574752,\n    \"longitude\": 392.98154730946334\n  },\n  \"remoteId\": \"<string>\",\n  \"isDeleted\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "02e57721-7f19-4403-a7c7-df2483ba1e57",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"providerId\": \"<string>\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"location\": {\n    \"latitude\": 914.2954779574752,\n    \"longitude\": 392.98154730946334\n  },\n  \"remoteId\": \"<string>\",\n  \"isDeleted\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5efa642e-e8de-4524-b744-879b20e31deb",
+          "name": "Update Site",
+          "request": {
+            "name": "Update Site",
+            "description": {
+              "content": "Updates an existing print site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Sites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "xrxauth"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"providerId\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"location\": {\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"remoteId\": \"<string>\",\n  \"isDeleted\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "930a45ea-6a7c-4068-9aab-fe3cf51b066d",
+              "name": "Site updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"providerId\": \"<string>\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"location\": {\n    \"latitude\": 914.2954779574752,\n    \"longitude\": 392.98154730946334\n  },\n  \"remoteId\": \"<string>\",\n  \"isDeleted\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c3347834-a295-4891-9248-25845d0439c3",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"providerId\": \"<string>\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"location\": {\n    \"latitude\": 914.2954779574752,\n    \"longitude\": 392.98154730946334\n  },\n  \"remoteId\": \"<string>\",\n  \"isDeleted\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a481f624-e7ec-4924-9cb0-b602c714fafa",
+          "name": "Delete Site",
+          "request": {
+            "name": "Delete Site",
+            "description": {
+              "content": "Deletes a specified print site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Sites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the site to delete"
+                }
+              ],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "xrxauth"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c13f2be5-fb67-475f-958e-bb311a783ba7",
+              "name": "Site deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0402c48c-29e0-437d-93c1-db12bd0bc141",
+              "name": "Site not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Sites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2daaa85-0c7c-4b6a-960e-089e5afbb24d",
+          "name": "Search Sites By Location",
+          "request": {
+            "name": "Search Sites By Location",
+            "description": {
+              "content": "Searches for print sites within a specified radius of a location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Sites",
+                "Search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<double>",
+                  "description": "(Required) Longitude of the center point"
+                },
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<double>",
+                  "description": "(Required) Latitude of the center point"
+                },
+                {
+                  "disabled": false,
+                  "key": "range",
+                  "value": "<number>",
+                  "description": "(Required) Search radius in meters"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "xrxauth"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1fc239bc-d649-48ba-a378-3509a2bd286e",
+              "name": "Sites found within range",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Sites",
+                    "Search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "longitude",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "range",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 2141,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"providerId\": \"string\",\n      \"address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"location\": {\n        \"latitude\": 3296.467517631071,\n        \"longitude\": 9742.035934418918\n      },\n      \"remoteId\": \"string\",\n      \"isDeleted\": true\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"providerId\": \"string\",\n      \"address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"location\": {\n        \"latitude\": 415.2373411267485,\n        \"longitude\": 3100.3650339210044\n      },\n      \"remoteId\": \"string\",\n      \"isDeleted\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93ac592e-847c-4842-9736-33c828a0c4eb",
+          "name": "Search Sites By Name",
+          "request": {
+            "name": "Search Sites By Name",
+            "description": {
+              "content": "Searches for print sites by name with pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Sites",
+                "SearchByName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Site name to search for"
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$take",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "xrxauth"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d1256b92-51b0-42c4-a0ad-21e8a16feca7",
+              "name": "Matching sites retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Sites",
+                    "SearchByName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$take",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 2141,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"providerId\": \"string\",\n      \"address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"location\": {\n        \"latitude\": 3296.467517631071,\n        \"longitude\": 9742.035934418918\n      },\n      \"remoteId\": \"string\",\n      \"isDeleted\": true\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"providerId\": \"string\",\n      \"address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"location\": {\n        \"latitude\": 415.2373411267485,\n        \"longitude\": 3100.3650339210044\n      },\n      \"remoteId\": \"string\",\n      \"isDeleted\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6dcf3752-b2ff-45b2-92a8-380076956591",
+          "name": "Search Sites By Remote Id",
+          "request": {
+            "name": "Search Sites By Remote Id",
+            "description": {
+              "content": "Searches for a site by its ID in a remote system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Sites",
+                "SearchByRemoteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "remoteId",
+                  "value": "<string>",
+                  "description": "(Required) The remote system identifier"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "xrxauth"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "59063163-c5e6-43e8-a924-af76c40c5f31",
+              "name": "Matching site retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Sites",
+                    "SearchByRemoteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "remoteId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"providerId\": \"string\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"location\": {\n    \"latitude\": 9990.143644756256,\n    \"longitude\": 4373.477263780502\n  },\n  \"remoteId\": \"string\",\n  \"isDeleted\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53df6f29-f938-45b2-9533-409f6ea2eaca",
+          "name": "Add Favorite Site",
+          "request": {
+            "name": "Add Favorite Site",
+            "description": {
+              "content": "Marks a site as a favorite for the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Sites",
+                "Favorite"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the site"
+                }
+              ],
+              "variable": []
+            },
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "xrxauth"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cc9656b0-4b6f-4bc4-9ac1-618a8e677dd3",
+              "name": "Site added to favorites",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Sites",
+                    "Favorite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "635641a7-2f79-42a6-97a1-8f4b3931dc41",
+          "name": "Remove Favorite Site",
+          "request": {
+            "name": "Remove Favorite Site",
+            "description": {
+              "content": "Removes a site from the current user's favorites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Sites",
+                "Favorite"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the site"
+                }
+              ],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "xrxauth"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "72281107-cac1-440a-b2e9-460cbaee4aaf",
+              "name": "Site removed from favorites",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Sites",
+                    "Favorite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b802b5b-b2c3-4e0a-8151-ed2d3ba2e468",
+          "name": "List Favorite Sites",
+          "request": {
+            "name": "List Favorite Sites",
+            "description": {
+              "content": "Lists all sites marked as favorites by the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Sites",
+                "Favorites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "xrxauth"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1da4e496-3170-4fe4-9172-7f566b47cac6",
+              "name": "Favorite sites retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Sites",
+                    "Favorites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 2141,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"providerId\": \"string\",\n      \"address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"location\": {\n        \"latitude\": 3296.467517631071,\n        \"longitude\": 9742.035934418918\n      },\n      \"remoteId\": \"string\",\n      \"isDeleted\": true\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"providerId\": \"string\",\n      \"address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"location\": {\n        \"latitude\": 415.2373411267485,\n        \"longitude\": 3100.3650339210044\n      },\n      \"remoteId\": \"string\",\n      \"isDeleted\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b32489d-ad5a-41ed-86a3-746a742e9cf6",
+          "name": "Sync Sites",
+          "request": {
+            "name": "Sync Sites",
+            "description": {
+              "content": "Merges site data with the system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Sites",
+                "Sync"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "xrxauth"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sites\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"address\": {\n        \"street\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"location\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"remoteId\": \"<string>\",\n      \"isDeleted\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"providerId\": \"<string>\",\n      \"address\": {\n        \"street\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"location\": {\n        \"latitude\": \"<double>\",\n        \"longitude\": \"<double>\"\n      },\n      \"remoteId\": \"<string>\",\n      \"isDeleted\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5efafb1a-9087-4214-8caa-c2f74b1061a9",
+              "name": "Sites synced successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Sites",
+                    "Sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sites\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"providerId\": \"string\",\n      \"address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"location\": {\n        \"latitude\": 1106.0890394931278,\n        \"longitude\": 1964.5902120023638\n      },\n      \"remoteId\": \"string\",\n      \"isDeleted\": true\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"providerId\": \"string\",\n      \"address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"location\": {\n        \"latitude\": 5828.16205850713,\n        \"longitude\": 1927.8780819515807\n      },\n      \"remoteId\": \"string\",\n      \"isDeleted\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84786020-f113-43a4-8fcf-99fca8d0e839",
+          "name": "Update Sites From Provider",
+          "request": {
+            "name": "Update Sites From Provider",
+            "description": {
+              "content": "Synchronizes sites from a provider into the system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Sites",
+                "UpdateSites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "providerId",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the provider"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "xrxauth"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6e242186-8300-4e97-8579-7b1c5eab40eb",
+              "name": "Sites updated from provider",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Sites",
+                    "UpdateSites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "providerId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "xrxauth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://publicprintapi.services.xerox.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "xrxauth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3e3be18e-9727-4da1-be62-b0628e0abb3c",
+    "name": "Xerox Public Print EULA Sites API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing print jobs through the Xerox Public Print Service. Provides endpoints for job creation, status monitoring, site discovery, provider management, EULA handling, and print history management. All secure calls require xrxauth, user-email, and appid headers. If user-email is omitted the request is treated as an application request.\n\nContact Support:\n Name: Xerox Developer Program\n Email: xerox.global.developer.program@xerox.com",
+      "type": "text/plain"
+    }
+  }
+}

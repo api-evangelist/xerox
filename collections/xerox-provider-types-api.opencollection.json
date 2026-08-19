@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xerox Public Print EULA Provider Types API",
+    "version": "5.5.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "xrxauth",
+      "value": "{{xrxauth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Provider Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Provider Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/ProviderTypes",
+            "params": [
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip"
+              },
+              {
+                "name": "$take",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists all supported provider types with pagination support."
+        },
+        {
+          "info": {
+            "name": "Create Provider Type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/ProviderTypes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "xrxauth",
+              "value": "{{xrxauth}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new provider type in the system."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

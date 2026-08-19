@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xerox Public Print EULA Status API",
+    "version": "5.5.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "xrxauth",
+      "value": "{{xrxauth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get API Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://publicprintapi.services.xerox.com/api/v1/Status"
+          },
+          "docs": "Health check endpoint for monitoring the Xerox Public Print API status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
