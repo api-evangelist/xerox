@@ -31,7 +31,7 @@ tags:
 created: '2024-01-01'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/xerox/refs/heads/main/apis.yml
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: xerox:xerox-managed-print-services-api
   name: Xerox Managed Print Services API
