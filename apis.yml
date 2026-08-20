@@ -22,6 +22,13 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/xerox.png
 tags:
+  - Document-Management
+  - Enterprise
+  - Fortune 500
+  - Managed Print Services
+  - Print Services
+  - Printing
+tags_raw:
   - Document Management
   - Enterprise
   - Fortune 500
@@ -103,6 +110,8 @@ apis:
   humanURL: https://publicprintapi.services.xerox.com/
   baseURL: https://publicprintapi.services.xerox.com/api/v1
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
