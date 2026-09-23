@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Xerox Public Print EULA Jobs API
+  title: Xerox Public Print Jobs API
   description: REST API for managing print jobs through the Xerox Public Print Service. Provides endpoints for job creation, status monitoring, site discovery, provider management, EULA handling, and print history management. All secure calls require xrxauth, user-email, and appid headers. If user-email is omitted the request is treated as an application request.
   version: 5.5.0
   contact:
@@ -202,6 +202,51 @@ paths:
                 $ref: '#/components/schemas/JobOptionsResponse'
 components:
   schemas:
+    JobHistoryResponse:
+      type: object
+      description: Paginated list of job history
+      properties:
+        total:
+          type: integer
+          description: Total number of records
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+    JobOption:
+      type: object
+      description: A supported print job option
+      properties:
+        name:
+          type: string
+          description: Option name
+        type:
+          type: string
+          description: Option data type
+        values:
+          type: array
+          items:
+            type: string
+          description: Allowed values for this option
+    CreateJobRequest:
+      type: object
+      description: Request body for creating a new print job
+      properties:
+        documentUrl:
+          type: string
+          description: URL of the document to print
+        providerId:
+          type: string
+          description: ID of the print provider
+        siteId:
+          type: string
+          description: ID of the print site
+        options:
+          type: object
+          description: Print job options
+          additionalProperties: true
+      required:
+      - documentUrl
     Job:
       type: object
       description: A print job
@@ -237,59 +282,19 @@ components:
           type: object
           description: Print job options
           additionalProperties: true
-    JobOptionsResponse:
+    UpdateJobStatusRequest:
       type: object
-      description: Available print job options
+      description: Request to update job status
       properties:
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/JobOption'
-    CreateJobRequest:
-      type: object
-      description: Request body for creating a new print job
-      properties:
-        documentUrl:
+        jobId:
           type: string
-          description: URL of the document to print
-        providerId:
+          description: ID of the job to update
+        status:
           type: string
-          description: ID of the print provider
-        siteId:
-          type: string
-          description: ID of the print site
-        options:
-          type: object
-          description: Print job options
-          additionalProperties: true
+          description: New status value
       required:
-      - documentUrl
-    JobOption:
-      type: object
-      description: A supported print job option
-      properties:
-        name:
-          type: string
-          description: Option name
-        type:
-          type: string
-          description: Option data type
-        values:
-          type: array
-          items:
-            type: string
-          description: Allowed values for this option
-    JobHistoryResponse:
-      type: object
-      description: Paginated list of job history
-      properties:
-        total:
-          type: integer
-          description: Total number of records
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
+      - jobId
+      - status
     JobStatus:
       type: object
       description: Status of a print job
@@ -310,19 +315,14 @@ components:
         message:
           type: string
           description: Status message
-    UpdateJobStatusRequest:
+    JobOptionsResponse:
       type: object
-      description: Request to update job status
+      description: Available print job options
       properties:
-        jobId:
-          type: string
-          description: ID of the job to update
-        status:
-          type: string
-          description: New status value
-      required:
-      - jobId
-      - status
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobOption'
   securitySchemes:
     xrxauth:
       type: apiKey

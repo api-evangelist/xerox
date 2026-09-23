@@ -1,7 +1,9 @@
 ---
 title: Connecticut Children's and Xerox Partner to Introduce New ...
 url: https://www.businesswire.com/news/home/20250314751836/en/Connecticut-Childrens-and-Xerox-Partner-to-Introduce-New-Innovative-AI-driven-Technologies-to-Pediatric-Healthcare
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Xerox" press release artificial intelligence'
 position: 2
 source: serpapi-google

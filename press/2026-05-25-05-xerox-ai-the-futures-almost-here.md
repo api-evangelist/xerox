@@ -1,7 +1,9 @@
 ---
 title: Xerox AI – the future's almost here!
 url: https://www.perfectcolours.com/blog/2018/11/22/xerox-ai-the-futures-almost-here/?srsltid=AfmBOoqAEnZunThO-KFMQdJFUucWJHvzFvh7hZCDOCpuORD4prbBzVA3
-date: '2026-05-25'
+published: '2018-11-22'
+date_basis: url-derived
+harvested: '2026-05-25'
 query: '"Xerox" press release artificial intelligence'
 position: 5
 source: serpapi-google

@@ -1,7 +1,9 @@
 ---
 title: Xerox Launches New AI-Powered Intelligent Document ...
 url: https://www.news.xerox.com/news/xerox-launches-new-ai-powered-intelligent-document-processing-solution
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Xerox" press release artificial intelligence'
 position: 1
 source: serpapi-google
