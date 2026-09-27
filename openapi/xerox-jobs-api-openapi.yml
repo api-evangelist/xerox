@@ -202,32 +202,6 @@ paths:
                 $ref: '#/components/schemas/JobOptionsResponse'
 components:
   schemas:
-    JobHistoryResponse:
-      type: object
-      description: Paginated list of job history
-      properties:
-        total:
-          type: integer
-          description: Total number of records
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
-    JobOption:
-      type: object
-      description: A supported print job option
-      properties:
-        name:
-          type: string
-          description: Option name
-        type:
-          type: string
-          description: Option data type
-        values:
-          type: array
-          items:
-            type: string
-          description: Allowed values for this option
     CreateJobRequest:
       type: object
       description: Request body for creating a new print job
@@ -247,6 +221,41 @@ components:
           additionalProperties: true
       required:
       - documentUrl
+    JobOption:
+      type: object
+      description: A supported print job option
+      properties:
+        name:
+          type: string
+          description: Option name
+        type:
+          type: string
+          description: Option data type
+        values:
+          type: array
+          items:
+            type: string
+          description: Allowed values for this option
+    JobStatus:
+      type: object
+      description: Status of a print job
+      properties:
+        jobId:
+          type: string
+          description: ID of the job
+        status:
+          type: string
+          description: Current status
+          enum:
+          - Pending
+          - Processing
+          - Ready
+          - Printed
+          - Failed
+          - Expired
+        message:
+          type: string
+          description: Status message
     Job:
       type: object
       description: A print job
@@ -282,6 +291,25 @@ components:
           type: object
           description: Print job options
           additionalProperties: true
+    JobOptionsResponse:
+      type: object
+      description: Available print job options
+      properties:
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobOption'
+    JobHistoryResponse:
+      type: object
+      description: Paginated list of job history
+      properties:
+        total:
+          type: integer
+          description: Total number of records
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
     UpdateJobStatusRequest:
       type: object
       description: Request to update job status
@@ -295,34 +323,6 @@ components:
       required:
       - jobId
       - status
-    JobStatus:
-      type: object
-      description: Status of a print job
-      properties:
-        jobId:
-          type: string
-          description: ID of the job
-        status:
-          type: string
-          description: Current status
-          enum:
-          - Pending
-          - Processing
-          - Ready
-          - Printed
-          - Failed
-          - Expired
-        message:
-          type: string
-          description: Status message
-    JobOptionsResponse:
-      type: object
-      description: Available print job options
-      properties:
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/JobOption'
   securitySchemes:
     xrxauth:
       type: apiKey

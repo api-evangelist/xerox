@@ -35,7 +35,7 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/xerox.png
 tags:
-  - Document-Management
+  - Document Management
   - Enterprise
   - Fortune 500
   - Managed Print Services
@@ -48,6 +48,7 @@ tags_raw:
   - Managed Print Services
   - Print Services
   - Printing
+  - Document-Management
 created: '2024-01-01'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/xerox/refs/heads/main/apis.yml

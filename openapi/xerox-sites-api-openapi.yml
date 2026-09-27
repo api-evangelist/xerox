@@ -306,6 +306,16 @@ paths:
           description: Sites updated from provider
 components:
   schemas:
+    GeoLocation:
+      type: object
+      description: Geographic coordinates
+      properties:
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
     SyncSitesRequest:
       type: object
       description: Request to sync site data
@@ -324,16 +334,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Site'
-    GeoLocation:
+    Address:
       type: object
-      description: Geographic coordinates
+      description: Physical address
       properties:
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
     Site:
       type: object
       description: A print site (location with printers)
@@ -357,20 +371,6 @@ components:
         isDeleted:
           type: boolean
           description: Whether the site has been deleted
-    Address:
-      type: object
-      description: Physical address
-      properties:
-        street:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
   securitySchemes:
     xrxauth:
       type: apiKey

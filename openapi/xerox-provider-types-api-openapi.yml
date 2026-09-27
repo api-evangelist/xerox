@@ -69,16 +69,6 @@ paths:
           description: Bad request
 components:
   schemas:
-    ProviderTypeListResponse:
-      type: object
-      description: Paginated list of provider types
-      properties:
-        total:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProviderType'
     ProviderType:
       type: object
       description: A type of print provider
@@ -92,6 +82,16 @@ components:
         description:
           type: string
           description: Provider type description
+    ProviderTypeListResponse:
+      type: object
+      description: Paginated list of provider types
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProviderType'
   securitySchemes:
     xrxauth:
       type: apiKey
