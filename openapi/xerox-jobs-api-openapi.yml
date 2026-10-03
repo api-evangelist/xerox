@@ -202,40 +202,6 @@ paths:
                 $ref: '#/components/schemas/JobOptionsResponse'
 components:
   schemas:
-    CreateJobRequest:
-      type: object
-      description: Request body for creating a new print job
-      properties:
-        documentUrl:
-          type: string
-          description: URL of the document to print
-        providerId:
-          type: string
-          description: ID of the print provider
-        siteId:
-          type: string
-          description: ID of the print site
-        options:
-          type: object
-          description: Print job options
-          additionalProperties: true
-      required:
-      - documentUrl
-    JobOption:
-      type: object
-      description: A supported print job option
-      properties:
-        name:
-          type: string
-          description: Option name
-        type:
-          type: string
-          description: Option data type
-        values:
-          type: array
-          items:
-            type: string
-          description: Allowed values for this option
     JobStatus:
       type: object
       description: Status of a print job
@@ -256,6 +222,32 @@ components:
         message:
           type: string
           description: Status message
+    JobOption:
+      type: object
+      description: A supported print job option
+      properties:
+        name:
+          type: string
+          description: Option name
+        type:
+          type: string
+          description: Option data type
+        values:
+          type: array
+          items:
+            type: string
+          description: Allowed values for this option
+    JobHistoryResponse:
+      type: object
+      description: Paginated list of job history
+      properties:
+        total:
+          type: integer
+          description: Total number of records
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
     Job:
       type: object
       description: A print job
@@ -291,6 +283,25 @@ components:
           type: object
           description: Print job options
           additionalProperties: true
+    CreateJobRequest:
+      type: object
+      description: Request body for creating a new print job
+      properties:
+        documentUrl:
+          type: string
+          description: URL of the document to print
+        providerId:
+          type: string
+          description: ID of the print provider
+        siteId:
+          type: string
+          description: ID of the print site
+        options:
+          type: object
+          description: Print job options
+          additionalProperties: true
+      required:
+      - documentUrl
     JobOptionsResponse:
       type: object
       description: Available print job options
@@ -299,17 +310,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/JobOption'
-    JobHistoryResponse:
-      type: object
-      description: Paginated list of job history
-      properties:
-        total:
-          type: integer
-          description: Total number of records
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Job'
     UpdateJobStatusRequest:
       type: object
       description: Request to update job status
