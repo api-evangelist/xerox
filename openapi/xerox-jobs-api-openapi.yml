@@ -202,26 +202,6 @@ paths:
                 $ref: '#/components/schemas/JobOptionsResponse'
 components:
   schemas:
-    JobStatus:
-      type: object
-      description: Status of a print job
-      properties:
-        jobId:
-          type: string
-          description: ID of the job
-        status:
-          type: string
-          description: Current status
-          enum:
-          - Pending
-          - Processing
-          - Ready
-          - Printed
-          - Failed
-          - Expired
-        message:
-          type: string
-          description: Status message
     JobOption:
       type: object
       description: A supported print job option
@@ -237,6 +217,27 @@ components:
           items:
             type: string
           description: Allowed values for this option
+    UpdateJobStatusRequest:
+      type: object
+      description: Request to update job status
+      properties:
+        jobId:
+          type: string
+          description: ID of the job to update
+        status:
+          type: string
+          description: New status value
+      required:
+      - jobId
+      - status
+    JobOptionsResponse:
+      type: object
+      description: Available print job options
+      properties:
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobOption'
     JobHistoryResponse:
       type: object
       description: Paginated list of job history
@@ -283,6 +284,26 @@ components:
           type: object
           description: Print job options
           additionalProperties: true
+    JobStatus:
+      type: object
+      description: Status of a print job
+      properties:
+        jobId:
+          type: string
+          description: ID of the job
+        status:
+          type: string
+          description: Current status
+          enum:
+          - Pending
+          - Processing
+          - Ready
+          - Printed
+          - Failed
+          - Expired
+        message:
+          type: string
+          description: Status message
     CreateJobRequest:
       type: object
       description: Request body for creating a new print job
@@ -302,27 +323,6 @@ components:
           additionalProperties: true
       required:
       - documentUrl
-    JobOptionsResponse:
-      type: object
-      description: Available print job options
-      properties:
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/JobOption'
-    UpdateJobStatusRequest:
-      type: object
-      description: Request to update job status
-      properties:
-        jobId:
-          type: string
-          description: ID of the job to update
-        status:
-          type: string
-          description: New status value
-      required:
-      - jobId
-      - status
   securitySchemes:
     xrxauth:
       type: apiKey
