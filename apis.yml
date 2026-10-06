@@ -50,7 +50,7 @@ tags_raw:
   - Printing
   - Document-Management
 created: '2024-01-01'
-modified: '2026-05-19'
+modified: '2026-10-06'
 url: https://raw.githubusercontent.com/api-evangelist/xerox/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 apis:
@@ -181,6 +181,8 @@ apis:
   - type: Documentation
     url: https://publicprintapi.services.xerox.com/
 common:
+  - url: https://www.news.xerox.com/rss.xml
+    type: BlogRSS
   - type: AgenticAccess
     url: agentic-access/xerox-agentic-access.yml
   - type: DomainSecurity
