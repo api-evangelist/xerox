@@ -181,6 +181,12 @@ apis:
   - type: Documentation
     url: https://publicprintapi.services.xerox.com/
 common:
+  - type: Plans
+    url: plans/xerox-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/xerox-rate-limits.yml
+  - type: FinOps
+    url: finops/xerox-finops.yml
   - url: https://www.news.xerox.com/rss.xml
     type: BlogRSS
   - type: AgenticAccess
