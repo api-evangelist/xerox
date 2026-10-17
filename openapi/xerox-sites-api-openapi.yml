@@ -316,6 +316,38 @@ components:
         longitude:
           type: number
           format: double
+    SiteListResponse:
+      type: object
+      description: List of sites
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Site'
+    SyncSitesRequest:
+      type: object
+      description: Request to sync site data
+      properties:
+        sites:
+          type: array
+          items:
+            $ref: '#/components/schemas/Site'
+    Address:
+      type: object
+      description: Physical address
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
     Site:
       type: object
       description: A print site (location with printers)
@@ -339,38 +371,6 @@ components:
         isDeleted:
           type: boolean
           description: Whether the site has been deleted
-    SyncSitesRequest:
-      type: object
-      description: Request to sync site data
-      properties:
-        sites:
-          type: array
-          items:
-            $ref: '#/components/schemas/Site'
-    SiteListResponse:
-      type: object
-      description: List of sites
-      properties:
-        total:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Site'
-    Address:
-      type: object
-      description: Physical address
-      properties:
-        street:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
   securitySchemes:
     xrxauth:
       type: apiKey

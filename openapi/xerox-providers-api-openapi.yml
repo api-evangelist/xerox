@@ -139,16 +139,6 @@ paths:
                 $ref: '#/components/schemas/ProviderListResponse'
 components:
   schemas:
-    ProviderListResponse:
-      type: object
-      description: Paginated list of providers
-      properties:
-        total:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Provider'
     Provider:
       type: object
       description: A print provider
@@ -168,6 +158,16 @@ components:
         websiteUrl:
           type: string
           description: Provider website URL
+    ProviderListResponse:
+      type: object
+      description: Paginated list of providers
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Provider'
   securitySchemes:
     xrxauth:
       type: apiKey
